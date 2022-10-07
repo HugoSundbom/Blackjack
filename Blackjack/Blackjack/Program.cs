@@ -21,7 +21,7 @@ namespace Blackjack
 
             int playerNum = 0;
 
-            Console.WriteLine("´Choose amount of players between 2-4");
+            Console.WriteLine("Choose amount of players between 2-4");
 
             playerNum = Convert.ToInt32(Console.ReadLine());
 
@@ -33,6 +33,7 @@ namespace Blackjack
             List<int> Player4 = new List<int>();
 
             CardDealing(Kortlek, Dealer, Player1, Player2, Player3, Player4, playerNum);
+            //Eventuellt ändra så man kan spela ensam
 
             for(int i = 0; i < Player1.Count; i++)
             {
@@ -55,10 +56,77 @@ namespace Blackjack
             }
 
             int dealerCount = 0;
+            String p1Tjock = "n";
+            String p2Tjock = "n";
+            String p3Tjock = "n";
+            String p4Tjock = "n";
 
-            while(dealerCount < 22)
+            while (dealerCount < 22)
             {
+                if(p1Tjock == "n")
+                {
+                    int player1Sum = plus(Player1);
+                    if (player1Sum == 21)
+                    {
+                        Console.WriteLine("player1 vann");
+                    }
+                    else if (player1Sum > 21)
+                    {
+                        Console.WriteLine("player1 är tjock");
 
+                        p1Tjock = "y";
+                    }
+                }
+                if (p2Tjock == "n")
+                {
+
+                    int player2Sum = plus(Player2);
+                    if (player2Sum == 21)
+                    {
+                        Console.WriteLine("Player 2 vann");
+                    }
+                    else if (player2Sum > 21)
+                    {
+                        Console.WriteLine("player1 är tjock");
+
+                        p1Tjock = "y";
+                    }
+                }
+                if (p3Tjock == "n")
+                {
+                    int player3Sum = plus(Player3);
+                    if (playerNum > 2)
+                    {
+                        if (player3Sum == 21)
+                        {
+                            Console.WriteLine("player3 vann");
+                        }
+                    }
+                    else if (player3Sum > 21)
+                    {
+                        Console.WriteLine("player1 är tjock");
+
+                        p1Tjock = "y";
+                    }
+                }
+
+                if (p4Tjock == "n")
+                {
+                    int player4Sum = plus(Player3);
+                    if (playerNum == 4)
+                    {
+                        if (player4Sum == 21)
+                        {
+                            Console.WriteLine("player4 vann");
+                        }
+                    }
+                    else if (player4Sum > 21)
+                    {
+                        Console.WriteLine("player1 är tjock");
+
+                        p1Tjock = "y";
+                    }
+                }
             }
 
         }
@@ -114,6 +182,10 @@ namespace Blackjack
             for(int i = 0; i < cards.Count; i++)
             {
                 sum = sum + cards[i];
+                if(sum > 21 && cards[i] == 11)
+                {
+                    sum -= 10;
+                }
             }
             return sum;
         }

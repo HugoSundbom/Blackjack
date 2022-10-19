@@ -12,3 +12,17 @@ C:\Users\max.pajnert\Desktop\Blackjack\Blackjack\Blackjack\obj\Debug\netcoreapp3
 C:\Users\max.pajnert\Desktop\Blackjack\Blackjack\Blackjack\obj\Debug\netcoreapp3.1\Blackjack.dll
 C:\Users\max.pajnert\Desktop\Blackjack\Blackjack\Blackjack\obj\Debug\netcoreapp3.1\Blackjack.pdb
 C:\Users\max.pajnert\Desktop\Blackjack\Blackjack\Blackjack\obj\Debug\netcoreapp3.1\Blackjack.genruntimeconfig.cache
+C:\Users\hugo.sundbom\Desktop\Blackjack\Blackjack\Blackjack\bin\Debug\netcoreapp3.1\Blackjack.exe
+C:\Users\hugo.sundbom\Desktop\Blackjack\Blackjack\Blackjack\bin\Debug\netcoreapp3.1\Blackjack.deps.json
+C:\Users\hugo.sundbom\Desktop\Blackjack\Blackjack\Blackjack\bin\Debug\netcoreapp3.1\Blackjack.runtimeconfig.json
+C:\Users\hugo.sundbom\Desktop\Blackjack\Blackjack\Blackjack\bin\Debug\netcoreapp3.1\Blackjack.runtimeconfig.dev.json
+C:\Users\hugo.sundbom\Desktop\Blackjack\Blackjack\Blackjack\bin\Debug\netcoreapp3.1\Blackjack.dll
+C:\Users\hugo.sundbom\Desktop\Blackjack\Blackjack\Blackjack\bin\Debug\netcoreapp3.1\Blackjack.pdb
+C:\Users\hugo.sundbom\Desktop\Blackjack\Blackjack\Blackjack\obj\Debug\netcoreapp3.1\Blackjack.csproj.AssemblyReference.cache
+C:\Users\hugo.sundbom\Desktop\Blackjack\Blackjack\Blackjack\obj\Debug\netcoreapp3.1\Blackjack.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hugo.sundbom\Desktop\Blackjack\Blackjack\Blackjack\obj\Debug\netcoreapp3.1\Blackjack.AssemblyInfoInputs.cache
+C:\Users\hugo.sundbom\Desktop\Blackjack\Blackjack\Blackjack\obj\Debug\netcoreapp3.1\Blackjack.AssemblyInfo.cs
+C:\Users\hugo.sundbom\Desktop\Blackjack\Blackjack\Blackjack\obj\Debug\netcoreapp3.1\Blackjack.csproj.CoreCompileInputs.cache
+C:\Users\hugo.sundbom\Desktop\Blackjack\Blackjack\Blackjack\obj\Debug\netcoreapp3.1\Blackjack.dll
+C:\Users\hugo.sundbom\Desktop\Blackjack\Blackjack\Blackjack\obj\Debug\netcoreapp3.1\Blackjack.pdb
+C:\Users\hugo.sundbom\Desktop\Blackjack\Blackjack\Blackjack\obj\Debug\netcoreapp3.1\Blackjack.genruntimeconfig.cache

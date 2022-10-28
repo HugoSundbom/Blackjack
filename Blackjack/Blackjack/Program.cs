@@ -22,11 +22,11 @@ namespace Blackjack
             int playerNum = 0;
 
             Console.WriteLine("Choose amount of players between 2-4");
-
             playerNum = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("kort 1 och 2 tillhör player 1, kort 3 och 4 tillhör player 2 osv.");
 
+            //Spelar listor
             List<int> Dealer = new List<int>();
-
             List<int> Player1 = new List<int>();
             List<int> Player2 = new List<int>();
             List<int> Player3 = new List<int>();
@@ -38,7 +38,6 @@ namespace Blackjack
             string p4Continue = "y";
 
             CardDealing(Kortlek, Dealer, Player1, Player2, Player3, Player4, playerNum, 2);
-            //Eventuellt ändra så man kan spela ensam
 
             for (int i = 0; i < Player1.Count; i++)
             {
@@ -60,14 +59,18 @@ namespace Blackjack
                 Console.WriteLine(Player4[i]);
             }
 
-            int dealerCount = 0;
+            int dealerCount = Plus(Dealer);
             String p1Tjock = "n";
             String p2Tjock = "n";
             String p3Tjock = "n";
             String p4Tjock = "n";
 
+            Console.WriteLine("Dealern har: \n" + Dealer[0] + "\n" + Dealer[1]);
+
             while (dealerCount < 22)
             {
+                
+
                 //Player 1
                 if (p1Tjock == "n" && p1Continue == "y")
                 {
@@ -87,12 +90,32 @@ namespace Blackjack
                     {
                         Console.WriteLine("Vill player 1 ha ett till kort? y/n");
                         p1Continue = Console.ReadLine();
+                        if (p1Continue == "y")
+                        {
+                            Player1.Add(addSingleCard(Kortlek));
+                            player1Sum = Plus(Player1);
+                            Console.WriteLine("Player 1 har:");
+                            for (int i = 0; i < Player1.Count; i++)
+                            {
+                                Console.WriteLine(Player1[i]);
+                            }
+                            if(player1Sum > 21)
+                            {
+                                Console.WriteLine("Player1 är tjock");
+                                p1Continue = "n";
+                            }
+                            else if(player1Sum == 21)
+                            {
+                                Console.WriteLine("Player 1 har 21");
+                                p1Continue = "n";
+                            }
+                        }
                     }
 
                 }
 
                 //Player 2
-                if (p2Tjock == "n" && p1Continue == "y")
+                if (p2Tjock == "n" && p2Continue == "y")
                 {
                     Console.WriteLine("PLAYER 2");
                     int player2Sum = Plus(Player2);
@@ -110,58 +133,142 @@ namespace Blackjack
                     {
                         Console.WriteLine("Vill player 2 ha ett till kort? y/n");
                         p2Continue = Console.ReadLine();
+                        if (p2Continue == "y")
+                        {
+                            Player2.Add(addSingleCard(Kortlek));
+                            player2Sum = Plus(Player2);
+                            Console.WriteLine("Player 2 har:");
+                            for (int i = 0; i < Player2.Count; i++)
+                            {
+                                Console.WriteLine(Player2[i]);
+                            }
+                            if (player2Sum > 21)
+                            {
+                                Console.WriteLine("Player2 är tjock");
+                                p2Continue = "n";
+                            }
+                            else if (player2Sum == 21)
+                            {
+                                Console.WriteLine("Player 2 fick 21");
+                                p2Continue = "n";
+                            }
+                        }
                     }
                 }
 
                 //player 3
                 if (p3Tjock == "n" && p3Continue == "y")
                 {
-                    Console.WriteLine("PLAYER 3");
                     int player3Sum = Plus(Player3);
-                    if (playerNum == 3 || playerNum == 4)
+                    if (playerNum > 2)
                     {
+                        Console.WriteLine("PLAYER 3");
                         if (player3Sum == 21)
                         {
                             Console.WriteLine("player3 vann");
                         }
-                    }
-                    else if (player3Sum > 21)
-                    {
-                        Console.WriteLine("player 3 är tjock");
 
-                        p3Tjock = "y";
+                        else if (player3Sum > 21)
+                        {
+                            Console.WriteLine("player 3 är tjock");
+
+                            p3Tjock = "y";
+                        }
+                        else if (player3Sum < 21)
+                        {
+                            Console.WriteLine("Vill player 3 ha ett till kort? y/n");
+                            p3Continue = Console.ReadLine();
+                            if (p3Continue == "y")
+                            {
+                                Player3.Add(addSingleCard(Kortlek));
+                                player3Sum = Plus(Player3);
+                                Console.WriteLine("Player 3 har:");
+                                for (int i = 0; i < Player3.Count; i++)
+                                {
+                                    Console.WriteLine(Player3[i]);
+                                }
+                                if (player3Sum > 21)
+                                {
+                                    Console.WriteLine("Player3 är tjock");
+                                    p1Continue = "n";
+                                }
+                                else if (player3Sum == 21)
+                                {
+                                    Console.WriteLine("Player 3 fick 21");
+                                    p3Continue = "n";
+                                }
+                            }
+                        }
                     }
-                    else if (player3Sum < 21)
+                    else
                     {
-                        Console.WriteLine("Vill player 3 ha ett till kort? y/n");
-                        p3Continue = Console.ReadLine();
+                        p3Continue = "n";
                     }
                 }
 
                 //Player 4
                 if (p4Tjock == "n" && p4Continue == "y")
                 {
-                    Console.WriteLine("PLAYER 4");
-                    int player4Sum = Plus(Player3);
-                    if (playerNum == 4)
+                    int player4Sum = Plus(Player4);
+                    if (playerNum > 3)
                     {
+                        Console.WriteLine("PLAYER 4");
                         if (player4Sum == 21)
                         {
                             Console.WriteLine("player4 vann");
                         }
+                        else if (player4Sum > 21)
+                        {
+                            Console.WriteLine("player 4 är tjock");
+                            p4Tjock = "y";
+                        }
+                        else if (player4Sum < 21)
+                        {
+                            Console.WriteLine("Vill player 4 ha ett till kort? y/n");
+                            p4Continue = Console.ReadLine();
+                            if(p4Continue == "y")
+                            {
+                                Player4.Add(addSingleCard(Kortlek));
+                                player4Sum = Plus(Player4);
+                                Console.WriteLine("Player 4 har:");
+                                for(int i = 0; i < Player4.Count; i++)
+                                {
+                                    Console.WriteLine(Player4[i]);
+                                }
+                                if (player4Sum > 21)
+                                {
+                                    Console.WriteLine("Player4 är tjock");
+                                    p1Continue = "n";
+                                }
+                                else if (player4Sum == 21)
+                                {
+                                    Console.WriteLine("Player 4 fick 21");
+                                    p4Continue = "n";
+                                }
+                            }
+                        }
                     }
-                    else if (player4Sum > 21)
+                    else
                     {
-                        Console.WriteLine("player 4 är tjock");
-                        p4Tjock = "y";
-                    }
-                    else if (player4Sum < 21)
-                    {
-                        Console.WriteLine("Vill player 3 ha ett till kort? y/n");
-                        p4Continue = Console.ReadLine();
+                        p4Continue = "n";
                     }
                 }
+
+                //Dealer
+                Dealer.Add(addSingleCard(Kortlek));
+                dealerCount = Plus(Dealer);
+                Console.WriteLine("Dealern har:");
+                for (int i = 0; i < Dealer.Count; i++)
+                {
+                    Console.WriteLine(Dealer[i]);
+                }
+
+                if (p1Continue == "n" && p2Continue == "n" && p3Continue == "n" && p4Continue == "n")
+                {
+                    break;
+                }
             }
+            Console.WriteLine("Breakcheck");
         }
         static void CardDealing(List<int> Kortlek, List<int> Dealer, List<int> Player1, List<int> Player2, List<int> Player3, List<int> Player4, int playerNum, int numOfDeals)
         {
@@ -216,6 +323,17 @@ namespace Blackjack
                 }
             }
             return sum;
+        }
+        static int addSingleCard(List<int> Kortlek)
+        {
+            int card = 0;
+            Random rand = new Random();
+            int rnd = rand.Next(0, Kortlek.Count);
+            if (Kortlek[rnd] > 11) { Kortlek[rnd] = 10; }
+            card = Kortlek[rnd];
+            Kortlek.Remove(Kortlek[rnd]);
+
+            return card;
         }
     }
 }

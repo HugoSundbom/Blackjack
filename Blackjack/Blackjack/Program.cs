@@ -44,15 +44,21 @@ namespace Blackjack
                 Console.WriteLine(Player1[i]);
             }
 
+            Console.WriteLine("");
+
             for (int i = 0; i < Player2.Count; i++)
             {
                 Console.WriteLine(Player2[i]);
             }
 
+            Console.WriteLine("");
+
             for (int i = 0; i < Player3.Count; i++)
             {
                 Console.WriteLine(Player3[i]);
             }
+
+            Console.WriteLine("");
 
             for (int i = 0; i < Player4.Count; i++)
             {
@@ -60,22 +66,31 @@ namespace Blackjack
             }
 
             int dealerCount = Plus(Dealer);
+
             String p1Tjock = "n";
             String p2Tjock = "n";
             String p3Tjock = "n";
             String p4Tjock = "n";
 
+            // skapar dessa utanför looparna så vi kan använda dem
+            int player1Sum = 0;
+            int player2Sum = 0;
+            int player3Sum = 0;
+            int player4Sum = 0;
+
+            Console.WriteLine("");
+            
             Console.WriteLine("Dealern har: \n" + Dealer[0] + "\n" + Dealer[1]);
 
             while (dealerCount < 22)
             {
-                
+                Console.WriteLine("");
 
                 //Player 1
                 if (p1Tjock == "n" && p1Continue == "y")
                 {
                     Console.WriteLine("PLAYER 1");
-                    int player1Sum = Plus(Player1);
+                    player1Sum = Plus(Player1);
                     if (player1Sum == 21)
                     {
                         Console.WriteLine("player1 vann");
@@ -114,11 +129,13 @@ namespace Blackjack
 
                 }
 
+                Console.WriteLine("");
+
                 //Player 2
                 if (p2Tjock == "n" && p2Continue == "y")
                 {
                     Console.WriteLine("PLAYER 2");
-                    int player2Sum = Plus(Player2);
+                    player2Sum = Plus(Player2);
                     if (player2Sum == 21)
                     {
                         Console.WriteLine("Player 2 vann");
@@ -156,10 +173,12 @@ namespace Blackjack
                     }
                 }
 
+                Console.WriteLine("");
+
                 //player 3
                 if (p3Tjock == "n" && p3Continue == "y")
                 {
-                    int player3Sum = Plus(Player3);
+                    player3Sum = Plus(Player3);
                     if (playerNum > 2)
                     {
                         Console.WriteLine("PLAYER 3");
@@ -190,7 +209,7 @@ namespace Blackjack
                                 if (player3Sum > 21)
                                 {
                                     Console.WriteLine("Player3 är tjock");
-                                    p1Continue = "n";
+                                    p3Continue = "n";
                                 }
                                 else if (player3Sum == 21)
                                 {
@@ -206,10 +225,12 @@ namespace Blackjack
                     }
                 }
 
+                Console.WriteLine("");
+
                 //Player 4
                 if (p4Tjock == "n" && p4Continue == "y")
                 {
-                    int player4Sum = Plus(Player4);
+                    player4Sum = Plus(Player4);
                     if (playerNum > 3)
                     {
                         Console.WriteLine("PLAYER 4");
@@ -254,18 +275,42 @@ namespace Blackjack
                     }
                 }
 
+                if (p1Continue == "n" && p2Continue == "n" && p3Continue == "n" && p4Continue == "n")
+                {
+                    break;
+                }
+
                 //Dealer
-                Dealer.Add(addSingleCard(Kortlek));
-                dealerCount = Plus(Dealer);
+                if (dealerCount < 17)
+                {
+                    Dealer.Add(addSingleCard(Kortlek));
+                    Console.WriteLine("Dealern drar en " + Dealer[Dealer.Count - 1]);
+                    dealerCount = Plus(Dealer);
+                }
+                else
+                {
+                    Console.WriteLine("Dealern drar inget kort");
+                }
                 Console.WriteLine("Dealern har:");
                 for (int i = 0; i < Dealer.Count; i++)
                 {
                     Console.WriteLine(Dealer[i]);
                 }
+            }
+            if(dealerCount > 21)
+            {
+                Console.WriteLine("Grattis, dealern är tjock");
+            }
 
-                if (p1Continue == "n" && p2Continue == "n" && p3Continue == "n" && p4Continue == "n")
+            Console.WriteLine("");
+            
+            Console.WriteLine("Player 1 har " + player1Sum + "\nPlayer 2 har " + player2Sum);
+            if(playerNum > 2)
+            {
+                Console.WriteLine("Player 3 har " + player3Sum);
+                if(playerNum > 3)
                 {
-                    break;
+                    Console.WriteLine("Player 4 har " + player4Sum);
                 }
             }
             Console.WriteLine("Breakcheck");

@@ -21,7 +21,7 @@ namespace Blackjack
 
             int playerNum = 0;
 
-            Console.WriteLine("Choose amount of players between 2-4");
+            Console.WriteLine("Välj antal spelare, 1-4");
             playerNum = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("kort 1 och 2 tillhör player 1, kort 3 och 4 tillhör player 2 osv.");
 
@@ -43,20 +43,29 @@ namespace Blackjack
             {
                 Console.WriteLine(Player1[i]);
             }
+            Console.WriteLine("");
 
             for (int i = 0; i < Player2.Count; i++)
             {
                 Console.WriteLine(Player2[i]);
             }
-
+            Console.WriteLine("");
             for (int i = 0; i < Player3.Count; i++)
             {
                 Console.WriteLine(Player3[i]);
+                if(i == 1)
+                {
+                    Console.WriteLine("");
+                }
             }
 
             for (int i = 0; i < Player4.Count; i++)
             {
                 Console.WriteLine(Player4[i]);
+                if(i == 1)
+                {
+                    Console.WriteLine("");
+                }
             }
 
             int dealerCount = Plus(Dealer);
@@ -65,9 +74,16 @@ namespace Blackjack
             String p3Tjock = "n";
             String p4Tjock = "n";
 
+            //Skapar dessa utanför loopen
+            int player1Sum = 0;
+            int player2Sum = 0;
+            int player3Sum = 0;
+            int player4Sum = 0;
+
+
             Console.WriteLine("Dealern har: \n" + Dealer[0] + "\n" + Dealer[1]);
 
-            while (dealerCount < 22)
+            while (dealerCount < 21)
             {
                 
 
@@ -75,10 +91,10 @@ namespace Blackjack
                 if (p1Tjock == "n" && p1Continue == "y")
                 {
                     Console.WriteLine("PLAYER 1");
-                    int player1Sum = Plus(Player1);
+                    player1Sum = Plus(Player1);
                     if (player1Sum == 21)
                     {
-                        Console.WriteLine("player1 vann");
+                        Console.WriteLine("player1 har 21");
                     }
                     else if (player1Sum > 21)
                     {
@@ -118,10 +134,10 @@ namespace Blackjack
                 if (p2Tjock == "n" && p2Continue == "y")
                 {
                     Console.WriteLine("PLAYER 2");
-                    int player2Sum = Plus(Player2);
+                    player2Sum = Plus(Player2);
                     if (player2Sum == 21)
                     {
-                        Console.WriteLine("Player 2 vann");
+                        Console.WriteLine("Player 2 har 21");
                     }
                     else if (player2Sum > 21)
                     {
@@ -159,13 +175,13 @@ namespace Blackjack
                 //player 3
                 if (p3Tjock == "n" && p3Continue == "y")
                 {
-                    int player3Sum = Plus(Player3);
+                    player3Sum = Plus(Player3);
                     if (playerNum > 2)
                     {
                         Console.WriteLine("PLAYER 3");
                         if (player3Sum == 21)
                         {
-                            Console.WriteLine("player3 vann");
+                            Console.WriteLine("player3 har 21");
                         }
 
                         else if (player3Sum > 21)
@@ -209,13 +225,13 @@ namespace Blackjack
                 //Player 4
                 if (p4Tjock == "n" && p4Continue == "y")
                 {
-                    int player4Sum = Plus(Player4);
+                    player4Sum = Plus(Player4);
                     if (playerNum > 3)
                     {
                         Console.WriteLine("PLAYER 4");
                         if (player4Sum == 21)
                         {
-                            Console.WriteLine("player4 vann");
+                            Console.WriteLine("player4 har 21");
                         }
                         else if (player4Sum > 21)
                         {
@@ -255,20 +271,42 @@ namespace Blackjack
                 }
 
                 //Dealer
-                Dealer.Add(addSingleCard(Kortlek));
-                dealerCount = Plus(Dealer);
-                Console.WriteLine("Dealern har:");
-                for (int i = 0; i < Dealer.Count; i++)
+                if (dealerCount < 17)
                 {
-                    Console.WriteLine(Dealer[i]);
+                    Dealer.Add(addSingleCard(Kortlek));
+                    Console.WriteLine("Dealern drar en " + Dealer[Dealer.Count - 1]);
+                    dealerCount = Plus(Dealer);
+                    Console.WriteLine("Dealern har:");
                 }
-
+                else if(p1Continue == "n" && p2Continue == "n" && p3Continue == "n" && p4Continue == "n")
+                {
+                    Console.WriteLine("Dealern drar inget kort");
+                }
                 if (p1Continue == "n" && p2Continue == "n" && p3Continue == "n" && p4Continue == "n")
                 {
                     break;
                 }
+                for (int i = 0; i < Dealer.Count; i++)
+                {
+                    Console.WriteLine(Dealer[i]);
+                }
+                if (dealerCount > 21)
+                {
+                    Console.WriteLine("Grattis, dealern är tjock");
+                }
             }
-            Console.WriteLine("Breakcheck");
+
+            Console.WriteLine("");
+
+            Console.WriteLine("Dealern har " + dealerCount + "\nPlayer 1 har " + player1Sum + "\nPlayer 2 har " + player2Sum);
+            if (playerNum > 2)
+            {
+                Console.WriteLine("Player 3 har " + player3Sum);
+                if (playerNum > 3)
+                {
+                    Console.WriteLine("Player 4 har " + player4Sum);
+                }
+            }
         }
         static void CardDealing(List<int> Kortlek, List<int> Dealer, List<int> Player1, List<int> Player2, List<int> Player3, List<int> Player4, int playerNum, int numOfDeals)
         {
